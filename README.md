@@ -7,7 +7,6 @@
 > **La herramienta definitiva de análisis y seguimiento para jugadores competitivos de Táctica Royale.**
 
 [**🚀 VER DEMO EN VIVO**](https://estudiosventorrillo.github.io/tactica-royale-hub/) 
-*(Sustituye este enlace cuando actives GitHub Pages)*
 
 ---
 
