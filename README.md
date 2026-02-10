@@ -6,7 +6,7 @@
 
 > **La herramienta definitiva de análisis y seguimiento para jugadores competitivos de Táctica Royale.**
 
----
+--
 
 ## 📱 Sobre el Proyecto
 
