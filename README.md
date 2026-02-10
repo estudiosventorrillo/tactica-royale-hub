@@ -1,4 +1,4 @@
-# ⚔️ Táctica Royale Fan-Hub 2026
+# ✴️ Táctica Royale Fan-Hub 2026
 
 ![Version](https://img.shields.io/badge/version-9.1-yellow?style=for-the-badge&logo=crown)
 ![Status](https://img.shields.io/badge/status-live-green?style=for-the-badge)
