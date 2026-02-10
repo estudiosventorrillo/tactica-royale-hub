@@ -46,13 +46,15 @@ Este proyecto ha sido desarrollado con un enfoque **Vanilla & Performance First*
 
 ---
 
-## 👨‍💻 Autor
+## 👤 Autor
 
-Diseñado y Desarrollado por **Juan Luis Valverde Salgueiro**.
+**Juan Luis Valverde Salgueiro** *Director de Arte y Content Creator*
 
-* [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juanluis-valverde/)
-* [![Behance](https://img.shields.io/badge/Behance-1769ff?style=flat&logo=behance&logoColor=white)](https://www.behance.net/estudiosventorrillo)
-* [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/estudiosventorrillo/)
+¿Te gusta el proyecto o necesitas un perfil creativo para tu próximo negocio? ¡Hablemos!
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juanluis-valverde/) 
+[![Behance](https://img.shields.io/badge/Behance-1769ff?style=flat&logo=behance&logoColor=white)](https://www.behance.net/estudiosventorrillo) 
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat&logo=instagram&logoColor=white)](https://www.instagram.com/estudiosventorrillo/?hl=es)
 
 ---
 
