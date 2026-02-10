@@ -20,9 +20,9 @@ A diferencia de un simple bloc de notas, esta aplicación utiliza **algoritmos d
 
 * **📊 Big Data Personalizado:** Análisis en tiempo real de tus últimas 20 partidas. Detecta automáticamente tus "MVP" (mejores tropas) y tus tropas "Tóxicas" (las que más te hacen perder).
 * **🧠 Lógica de Juego Real:** El sistema de sinergias replica exactamente las reglas del juego (las tropas duplicadas no suman stacks de atributos, solo suben de nivel).
-* **📱 Diseño 100% Responsive:** Interfaz adaptada pixel-perfect tanto para escritorio como para móviles (con soporte para *Safe Areas* en iPhone).
+* **📱 Diseño 100% Responsive:** Interfaz adaptada pixel-perfect tanto para escritorio como para móviles (con soporte para *Safe Areas*).
 * **💾 Persistencia de Datos:** Uso de `localStorage` para guardar todo tu historial sin necesidad de bases de datos externas ni login.
-* **🎨 UI/UX Inmersiva:** Estética fiel al juego original (Clash Royale), con efectos de sonido visuales, micro-interacciones y modo edición fluido.
+* **🎨 UI/UX Inmersiva:** Estética fiel al juego original (Clash Royale) con efectos de visuales, micro-interacciones y modo edición fluido.
 
 ---
 
