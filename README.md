@@ -37,16 +37,6 @@ Este proyecto ha sido desarrollado con un enfoque **Vanilla & Performance First*
 
 ---
 
-## 📸 Capturas de Pantalla
-
-| Versión Móvil | Versión Escritorio |
-|:---:|:---:|
-| <img src="ruta/a/tu/imagen-movil.jpg" width="250"> | <img src="ruta/a/tu/imagen-pc.jpg" width="400"> |
-
-*(Sube las capturas que me pasaste a una carpeta 'img' en tu repo y enlázalas aquí)*
-
----
-
 ## 🚀 Cómo Usar
 
 1.  **Juega tu partida** en Clash Royale.
