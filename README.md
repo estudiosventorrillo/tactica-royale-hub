@@ -42,7 +42,7 @@ Este proyecto ha sido desarrollado con un enfoque **Vanilla & Performance First*
 4.  Selecciona tu Líder, Rivales, Tropas y tu Posición final.
 5.  ¡Guarda y deja que el **Big Data** te diga cómo mejorar!
 
-[**🚀 PRUEBA LA DEMO EN VIVO**](https://estudiosventorrillo.github.io/tactica-royale-hub/) 
+**🌐 Accede aquí a la aplicación online:** [https://estudiosventorrillo.github.io/tactica-royale-hub/](https://estudiosventorrillo.github.io/tactica-royale-hub/)
 
 ---
 
