@@ -48,7 +48,7 @@ Este proyecto ha sido desarrollado con un enfoque **Vanilla & Performance First*
 
 ## 👨‍💻 Autor
 
-Diseñado y Desarrollado por **Juan Luis Valverde**.
+Diseñado y Desarrollado por **Juan Luis Valverde Salgueiro**.
 
 * [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juanluis-valverde/)
 * [![Behance](https://img.shields.io/badge/Behance-1769ff?style=flat&logo=behance&logoColor=white)](https://www.behance.net/estudiosventorrillo)
