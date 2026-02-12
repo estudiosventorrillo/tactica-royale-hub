@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Táctica Royale Fan-Hub v9.1</title>
+    <title>Táctica Royale Fan-Hub v12.02</title>
     
     <link rel="icon" type="image/png" href="https://vectorseek.com/wp-content/uploads/2023/09/Clash-Royale-Icon-Logo-Vector.svg-.png">
 
@@ -33,7 +33,7 @@
         .clash-btn { transition: all 0.1s; border-bottom-width: 6px; border-color: rgba(0,0,0,0.3); }
         .clash-btn:active { transform: translateY(4px); border-bottom-width: 2px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .selected-leader { transform: scale(1.1); border: 4px solid #fbbf24 !important; box-shadow: 0 0 20px #fbbf24; z-index: 10; }
+        .selected-leader, .selected-mod { transform: scale(1.1); border: 4px solid #fbbf24 !important; box-shadow: 0 0 20px #fbbf24; z-index: 10; }
         
         .rank-1 { background: linear-gradient(to bottom, #fcd34d, #b45309); border-color: #78350f; }
         .rank-2 { background: linear-gradient(to bottom, #4ade80, #15803d); border-color: #052e16; }
@@ -45,7 +45,8 @@
         .bg-elixir-4 { background: linear-gradient(to bottom right, #c084fc, #9333ea); border-color: #581c87; }
         .bg-elixir-5 { background: linear-gradient(to bottom right, #facc15, #ca8a04); border-color: #713f12; }
 
-        .bar-container { height: 100%; display: flex; align-items: flex-end; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 8px; position: relative; overflow: hidden; }
+        .bar-container { height: 100%; display: flex; align-items: flex-end; justify-content: center; background: rgba(255,255,255,0.1); border-radius: 8px; position: relative; overflow: hidden; transition: background 0.3s; }
+        .bar-container:hover { background: rgba(255,255,255,0.2); }
         .chart-grid { position: absolute; width: 100%; border-top: 1px dashed rgba(255,255,255,0.2); }
         
         .sticky-header { position: sticky; top: 0; z-index: 50; background-color: #1f232f; border-bottom: 2px solid #3d4658; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); }
@@ -79,18 +80,20 @@
                 </div>
             </div>
             
-            <button onclick="goToAddMatch()" class="clash-btn bg-yellow-500 text-white w-full py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 group hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">
-                <span class="text-4xl drop-shadow-strong group-hover:rotate-12 transition-transform">⚔️</span>
-                <span class="text-2xl font-black uppercase text-shadow">Nueva Partida</span>
+            <button onclick="goToAddMatch()" class="clash-btn bg-yellow-500 text-white w-full px-6 py-5 rounded-2xl shadow-xl flex items-center justify-center gap-3 group hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">
+                <span class="text-4xl drop-shadow-strong group-hover:rotate-12 transition-transform shrink-0">⚔️</span>
+                <span class="text-xl sm:text-2xl font-black uppercase text-shadow truncate">Registrar Partida</span>
             </button>
             
             <div class="grid grid-cols-2 gap-4">
                 <button onclick="goToHistory()" class="clash-btn bg-blue-600 text-white py-3 rounded-xl font-bold flex flex-col items-center border-blue-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer"><span class="text-2xl mb-1 drop-shadow-strong">📜</span> HISTORIAL</button>
                 <button onclick="goToStats()" class="clash-btn bg-purple-600 text-white py-3 rounded-xl font-bold flex flex-col items-center border-purple-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer"><span class="text-2xl mb-1 drop-shadow-strong">📊</span> BIG DATA</button>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="goToLeaderGuide()" class="clash-btn bg-orange-600 text-white py-3 rounded-xl font-bold text-xs uppercase border-orange-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">Guía Líderes</button>
-                <button onclick="goToAttrGuide()" class="clash-btn bg-gray-600 text-white py-3 rounded-xl font-bold text-xs uppercase border-gray-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">Guía Atributos</button>
+
+            <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                <button onclick="goToLeaderGuide()" class="clash-btn bg-orange-600 text-white py-3 rounded-xl font-bold text-[10px] uppercase border-orange-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">Líderes</button>
+                <button onclick="goToAttrGuide()" class="clash-btn bg-gray-600 text-white py-3 rounded-xl font-bold text-[10px] uppercase border-gray-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">Atributos</button>
+                <button onclick="goToModGuide()" class="clash-btn bg-green-600 text-white py-3 rounded-xl font-bold text-[10px] uppercase border-green-800 hover:scale-[1.02] active:scale-100 transition-transform cursor-pointer">MODIF.</button>
             </div>
 
             <div class="text-center opacity-80 hover:opacity-100 transition-opacity bg-black/20 rounded-xl p-3 backdrop-blur-sm mt-2">
@@ -105,16 +108,31 @@
         </div>
 
         <div id="view-form" class="hidden pb-32">
-            <div class="sticky-header p-4 flex justify-center items-center"><h2 id="form-title" class="text-2xl font-black uppercase text-center text-shadow">Nueva Partida</h2></div>
+            <div class="sticky-header p-4 flex justify-center items-center"><h2 id="form-title" class="text-2xl font-black uppercase text-center text-shadow">Registrar Partida</h2></div>
             <div class="p-4">
+                <section class="mb-4 text-center bg-black/20 p-3 rounded-2xl backdrop-blur-sm">
+                    <h3 class="text-white font-black mb-4 uppercase text-shadow">Tu Resultado</h3>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button onclick="selectRank(1)" class="rank-btn clash-btn rank-1 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="1">1º</button>
+                        <button onclick="selectRank(2)" class="rank-btn clash-btn rank-2 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="2">2º</button>
+                        <button onclick="selectRank(3)" class="rank-btn clash-btn rank-3 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="3">3º</button>
+                        <button onclick="selectRank(4)" class="rank-btn clash-btn rank-4 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="4">4º</button>
+                    </div>
+                </section>
+
+                <section class="mb-8 bg-black/20 p-3 rounded-2xl backdrop-blur-sm">
+                    <h3 class="text-green-400 font-black text-center mb-4 uppercase text-shadow">Modificador</h3>
+                    <div id="grid-match-mod" class="grid grid-cols-3 gap-2 max-h-48 overflow-y-auto p-1"></div>
+                </section>
+
                 <section class="mb-8 bg-black/20 p-3 rounded-2xl backdrop-blur-sm">
                     <h3 class="text-yellow-400 font-black text-center mb-4 uppercase text-shadow">Tu Líder</h3>
                     <div id="grid-my-leader" class="grid grid-cols-3 gap-3"></div>
                 </section>
                 
                 <section class="mb-8 bg-black/20 p-3 rounded-2xl backdrop-blur-sm">
-                    <h3 class="text-red-400 font-black text-center mb-2 uppercase text-shadow">Rivales</h3>
-                    <div id="selected-rivals-bar" class="flex justify-center gap-2 mb-4 h-14 bg-black/40 rounded-xl p-2 border border-white/5"></div>
+                    <h3 class="text-red-400 font-black text-center mb-2 uppercase text-shadow">Rivales (En orden de posición)</h3>
+                    <div id="selected-rivals-bar" class="flex justify-center gap-2 mb-4 h-16 bg-black/40 rounded-xl p-2 border border-white/5"></div>
                     <div id="grid-rivals" class="grid grid-cols-3 gap-2"></div>
                 </section>
                 
@@ -123,16 +141,6 @@
                     <div id="selected-squad-bar" class="grid grid-cols-6 gap-2 mb-4 h-14 bg-black/40 rounded-xl p-2 border border-white/5"></div>
                     <div id="active-synergies" class="flex flex-wrap gap-1 mb-4 justify-center"></div>
                     <div id="grid-troops" class="grid grid-cols-4 gap-2 max-h-[40vh] overflow-y-auto p-1 bg-black/40 rounded-xl border border-white/5"></div>
-                </section>
-
-                <section class="mb-4 text-center bg-black/20 p-3 rounded-2xl backdrop-blur-sm">
-                    <h3 class="text-white font-black mb-4 uppercase text-shadow">Resultado</h3>
-                    <div class="grid grid-cols-4 gap-2">
-                        <button onclick="selectRank(1)" class="rank-btn clash-btn rank-1 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="1">1º</button>
-                        <button onclick="selectRank(2)" class="rank-btn clash-btn rank-2 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="2">2º</button>
-                        <button onclick="selectRank(3)" class="rank-btn clash-btn rank-3 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="3">3º</button>
-                        <button onclick="selectRank(4)" class="rank-btn clash-btn rank-4 rounded-xl p-4 font-black text-shadow hover:scale-105 transition-transform" data-rank="4">4º</button>
-                    </div>
                 </section>
             </div>
             
@@ -143,9 +151,21 @@
         </div>
 
         <div id="view-history" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">HISTORIAL</h2></div><div id="history-list" class="space-y-3 p-4"></div></div>
-        <div id="view-stats" class="hidden pb-24"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">BIG DATA</h2></div><div class="p-4"><div class="bg-[#1f232f]/90 p-6 rounded-3xl border border-gray-600 mb-6 shadow-xl"><h3 class="text-xs font-black text-gray-400 uppercase mb-4 text-center">Rendimiento Últimas 20</h3><div class="flex justify-around items-end h-48 gap-3 px-2 relative" id="stats-chart"></div><div class="flex justify-around mt-3 px-2 text-xs font-black text-gray-400"><span>1º</span><span>2º</span><span>3º</span><span>4º</span></div></div><div id="stats-analysis" class="space-y-4 mb-6"></div><div id="stats-chars" class="space-y-4"></div></div></div>
+        <div id="view-stats" class="hidden pb-24"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">BIG DATA</h2></div><div class="p-4">
+            <div class="bg-[#1f232f]/90 p-6 rounded-3xl border border-gray-600 mb-6 shadow-xl">
+                <h3 class="text-xs font-black text-gray-400 uppercase mb-4 text-center">Rendimiento Últimas 20</h3>
+                <div class="flex justify-around items-end h-48 gap-3 px-2 relative" id="stats-chart"></div>
+                <div class="flex justify-around mt-3 px-2 text-xs font-black text-gray-400"><span>1º</span><span>2º</span><span>3º</span><span>4º</span></div>
+            </div>
+            <div id="stats-leader-usage" class="mb-6"></div>
+            <div id="stats-analysis" class="space-y-4 mb-6"></div>
+            <div id="stats-mod-correl" class="mb-6"></div>
+            <div id="stats-vs-leaders" class="mb-6"></div>
+            <div id="stats-chars" class="space-y-4"></div>
+        </div></div>
         <div id="view-guide-leaders" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">LÍDERES</h2></div><div id="guide-leaders-list" class="space-y-4 p-4"></div></div>
         <div id="view-guide-attrs" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">ATRIBUTOS</h2></div><div id="guide-attrs-list" class="space-y-4 p-4"></div></div>
+        <div id="view-guide-mods" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">MODIFICADORES</h2></div><div id="guide-mods-list" class="space-y-4 p-4"></div></div>
 
         <div id="welcome-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur hidden">
             <div class="bg-[#1f232f] border-4 border-yellow-500 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
@@ -157,12 +177,26 @@
                         <li>📊 <strong>Big Data:</strong> Descubre qué sinergias y tropas te dan más victorias.</li>
                         <li>🏆 <strong>Mejora:</strong> Analiza tus errores y sube a Top 1.</li>
                     </ul>
-                    <div class="bg-blue-900/40 border border-blue-500/50 p-3 rounded-xl flex gap-3 items-center text-left">
-                        <span class="text-2xl">📸</span>
-                        <p class="text-xs font-bold text-blue-100">CONSEJO PRO: Al terminar cada partida, haz una captura de pantalla a la tabla de resultados. ¡Así tendrás los datos listos para pasarlos aquí luego!</p>
-                    </div>
                 </div>
                 <button onclick="closeWelcome()" class="clash-btn bg-yellow-500 text-black w-full py-4 rounded-xl font-black mt-6 text-lg hover:scale-105 transition-transform">¡ENTENDIDO!</button>
+            </div>
+        </div>
+
+        <div id="update-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/80 backdrop-blur hidden">
+            <div class="bg-[#1f232f] border-4 border-green-500 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-green-500 text-black px-4 py-1 rounded-full font-black text-xs">NUEVA VERSIÓN v9.2</div>
+                <h2 class="text-2xl font-black text-center text-white uppercase mb-4 text-shadow drop-shadow-md">¡Actualización Lista! ⚔️</h2>
+                <div class="space-y-4 text-sm text-gray-200 leading-relaxed">
+                    <p class="text-center font-bold text-green-400">He metido un montón de mejoras para ayudarte a ganar:</p>
+                    <ul class="bg-black/30 p-4 rounded-xl space-y-3 border border-white/10 text-xs">
+                        <li class="flex gap-2"><span>🟢</span> <div><strong>Modificadores:</strong> Nueva guía completa y registro de modificadores en tus partidas.</div></li>
+                        <li class="flex gap-2"><span>📊</span> <div><strong>Big Data Pro:</strong> Mira el Win Rate de tus líderes y qué sinergias funcionan mejor con cada modificador.</div></li>
+                        <li class="flex gap-2"><span>👑</span> <div><strong>Orden de Rivales:</strong> Ahora registra a tus rivales según su posición real en la partida.</div></li>
+                        <li class="flex gap-2"><span>📈</span> <div><strong>Interactividad:</strong> Toca las barras de Big Data para ver el número exacto de partidas.</div></li>
+                    </ul>
+                    <p class="text-[10px] text-gray-400 text-center italic">Nota: Tus partidas guardadas siguen a salvo, pero ahora puedes editarlas para añadirles el modificador si quieres.</p>
+                </div>
+                <button onclick="closeUpdate()" class="clash-btn bg-green-500 text-white w-full py-4 rounded-xl font-black mt-6 text-lg hover:scale-105 transition-transform">¡BRUTAL, A JUGAR!</button>
             </div>
         </div>
     </main>
@@ -194,6 +228,27 @@
             { id: 'tirador', name: 'Tirador', icon: '🏹', color: 'bg-red-500', c2: '+10% Vel. Ataque con cada golpe (Máx 25).', c4: '+15% Vel. Ataque con cada golpe (Máx 25).' }
         ];
 
+        const MODIFIERS = [
+            { id: 'c_dano', name: 'Casilla de Daño', rank: 'Bronce II', icon: '💥', desc: 'Aparecen 2 casillas que reducen a la mitad el HP pero otorgan daño extra.' },
+            { id: 'recolector', name: 'Estructura: Recolector', rank: 'Bronce II', icon: '🧪', desc: 'Consigue un recolector de elixir de 3 estrellas en la ronda 5.' },
+            { id: 'ventaja_e', name: 'Ventaja por Estrella', rank: 'Bronce III', icon: '⭐', desc: 'Las tropas con más estrellas infligen más daño y reciben menos de las inferiores.' },
+            { id: 'invita', name: 'Invita la Casa', rank: 'Bronce III', icon: '🏠', desc: 'La primera tropa que compras en cada turno es gratis.' },
+            { id: 'ballesta', name: 'Estructura: Ballesta', rank: 'Plata I', icon: '🏹', desc: 'Consigue una ballesta de 3 estrellas en la ronda 5.' },
+            { id: 'dominio', name: 'Dominio', rank: 'Plata I', icon: '📈', desc: 'Las tropas de 3 y 4 estrellas obtienen puntos de vida y daño adicionales.' },
+            { id: 'c_inmune', name: 'Casilla de Inmunidad', rank: 'Plata II', icon: '🛡️', desc: '2 casillas vuelven inmunes al daño durante 5 segundos a las tropas.' },
+            { id: 'infernal', name: 'Estructura: Infernal', rank: 'Plata II', icon: '🔥', desc: 'Consigue una torre infernal de 3 estrellas en la ronda 5.' },
+            { id: 'perteneces', name: 'Ahora me perteneces', rank: 'Plata III', icon: '🤝', desc: 'Ganarás una copia de 1 estrella de la primera tropa enemiga que derrotes.' },
+            { id: 'eco_banco', name: 'Eco del Banco', icon: '🏦', rank: 'Plata III', desc: 'Cada ronda ganas una copia de 1 estrella de la tropa más a la derecha en tu banco.' },
+            { id: 'negocios', name: 'Negocios Fructíferos', rank: 'Oro I', icon: '💰', desc: 'Por cada tropa que vendas ganas +1 de elixir en la siguiente ronda.' },
+            { id: 'c_clon', name: 'Casilla de Clonación', rank: 'Oro I', icon: '👥', desc: '2 casillas crean copias de las tropas con el 70% de vida.' },
+            { id: 'mortero', name: 'Estructura: Mortero', rank: 'Oro II', icon: '💣', desc: 'Consigue un mortero de 3 estrellas en la ronda 5.' },
+            { id: 'medida', name: 'Diseñada a Medida', rank: 'Oro II', icon: '📏', desc: 'Cada ronda, gana una tropa adecuada para tu equipo.' },
+            { id: 'bonus_c', name: 'Bonus por Combinación', rank: 'Oro III', icon: '➕', desc: 'Al combinar recibes una tropa básica de 1 estrella.' },
+            { id: 'tesla', name: 'Estructura: Tesla', rank: 'Oro III', icon: '⚡', desc: 'Consigue una torre tesla de 3 estrellas en la ronda 5.' },
+            { id: 'prioritaria', name: 'Opción Prioritaria', rank: 'Diamante', icon: '🎫', desc: 'La primera tropa que compres en cada turno es de 2 estrellas.' },
+            { id: 'c_salto', name: 'Casilla de Salto', rank: 'Diamante', icon: '🚀', desc: '2 casillas permiten a las tropas saltar hasta el lado del rival.' }
+        ];
+
         const TROOPS = [
             { id: 1, name: 'Duendes', cost: 2, attrs: ['duende', 'asesino'] },
             { id: 2, name: 'D. Lanza', cost: 2, attrs: ['duende', 'destructor'] },
@@ -221,17 +276,37 @@
             { id: 24, name: 'Monje', cost: 5, attrs: ['as', 'super'] }
         ];
 
-        let draft = { leader: null, rivals: [], squad: [], rank: null };
-        let matchHistory = JSON.parse(localStorage.getItem('crt_v91_data')) || [];
+        let draft = { leader: null, rivals: [], squad: [], rank: null, modifier: null };
+        let matchHistory = JSON.parse(localStorage.getItem('crt_v92_data')) || [];
         let editingIdx = null;
 
-        document.addEventListener('DOMContentLoaded', () => { if (!localStorage.getItem('crt_welcome_shown_v9')) { document.getElementById('welcome-modal').classList.remove('hidden'); } });
-        function closeWelcome() { document.getElementById('welcome-modal').classList.add('hidden'); localStorage.setItem('crt_welcome_shown_v9', 'true'); }
+        document.addEventListener('DOMContentLoaded', () => { 
+            if (!localStorage.getItem('crt_welcome_shown_v9')) { 
+                document.getElementById('welcome-modal').classList.remove('hidden'); 
+            } else if (!localStorage.getItem('crt_v92_update_notified')) {
+                document.getElementById('update-modal').classList.remove('hidden');
+            }
+        });
+
+        function closeWelcome() { 
+            document.getElementById('welcome-modal').classList.add('hidden'); 
+            localStorage.setItem('crt_welcome_shown_v9', 'true'); 
+            if (!localStorage.getItem('crt_v92_update_notified')) {
+                document.getElementById('update-modal').classList.remove('hidden');
+            }
+        }
+
+        function closeUpdate() {
+            document.getElementById('update-modal').classList.add('hidden');
+            localStorage.setItem('crt_v92_update_notified', 'true');
+        }
+
         function navigate(id) { document.querySelectorAll('main > div').forEach(div => div.classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); window.scrollTo(0, 0); }
         function goHome() { editingIdx = null; document.getElementById('edit-indicator').classList.add('hidden'); updateHomeStats(); navigate('view-home'); }
         function cancelEdit() { if(editingIdx !== null) { goToHistory(); } else { goHome(); } }
 
         function renderFormInputs() {
+            document.getElementById('grid-match-mod').innerHTML = MODIFIERS.map(m => `<div onclick="setMatchMod('${m.id}', this)" class="mod-opt clash-btn bg-gray-800 rounded-xl p-2 flex flex-col items-center h-20 ${draft.modifier === m.id ? 'selected-mod' : ''} border-2 border-white/10 hover:scale-105 transition-transform cursor-pointer"><span class="text-xl drop-shadow-strong">${m.icon}</span><span class="text-[7px] font-black uppercase mt-1 text-center text-gray-300">${m.name}</span></div>`).join('');
             document.getElementById('grid-my-leader').innerHTML = LEADERS.map(l => `<div onclick="setMyLeader('${l.id}', this)" class="l-opt clash-btn ${l.color} rounded-xl p-2 flex flex-col items-center h-24 ${draft.leader === l.id ? 'selected-leader' : ''} border-2 border-white/20 hover:scale-105 transition-transform cursor-pointer"><span class="text-3xl drop-shadow-strong">${l.icon}</span><span class="text-[9px] font-black uppercase mt-1 text-center text-shadow">${l.name}</span></div>`).join('');
             document.getElementById('grid-rivals').innerHTML = LEADERS.map(l => `<div onclick="addRival('${l.id}')" class="clash-btn bg-gray-800 rounded-lg p-2 flex flex-col items-center h-16 border-2 border-gray-600 hover:scale-105 transition-transform cursor-pointer"><span class="text-xl drop-shadow-strong">${l.icon}</span><span class="text-[8px] font-bold text-gray-400 mt-1">${l.name}</span></div>`).join('');
             document.getElementById('grid-troops').innerHTML = TROOPS.map(t => {
@@ -241,54 +316,53 @@
             updateRivalsBar(); updateSquadUI();
         }
 
+        function setMatchMod(id, el) { draft.modifier = id; document.querySelectorAll('.mod-opt').forEach(opt => opt.classList.remove('selected-mod')); el.classList.add('selected-mod'); }
         function setMyLeader(id, el) { draft.leader = id; document.querySelectorAll('.l-opt').forEach(opt => opt.classList.remove('selected-leader')); el.classList.add('selected-leader'); }
         function addRival(id) { if (draft.rivals.length < 3) { draft.rivals.push(id); updateRivalsBar(); } }
         function removeRival(i) { draft.rivals.splice(i, 1); updateRivalsBar(); }
-        function updateRivalsBar() { document.getElementById('selected-rivals-bar').innerHTML = draft.rivals.map((id, i) => `<div onclick="removeRival(${i})" class="${LEADERS.find(x => x.id === id).color} w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-lg border-2 border-white/30 hover:scale-105 transition-transform cursor-pointer"><span class="drop-shadow-strong">${LEADERS.find(x => x.id === id).icon}</span></div>`).join('') || `<span class="text-gray-400 text-[10px] italic">Añade 3 líderes rivales</span>`; }
+        
+        function updateRivalsBar() { 
+            const availableRanks = [1, 2, 3, 4].filter(r => r !== draft.rank);
+            document.getElementById('selected-rivals-bar').innerHTML = draft.rivals.map((id, i) => {
+                const leader = LEADERS.find(x => x.id === id);
+                const rankAssigned = availableRanks[i] ? `${availableRanks[i]}º` : '?';
+                return `<div onclick="removeRival(${i})" class="${leader.color} w-12 h-12 rounded-full flex flex-col items-center justify-center text-xl shadow-lg border-2 border-white/30 hover:scale-105 transition-transform cursor-pointer relative"><span class="drop-shadow-strong">${leader.icon}</span><span class="absolute -top-1 -right-1 bg-black text-[8px] px-1 rounded border border-white/20">${rankAssigned}</span></div>`;
+            }).join('') || `<span class="text-gray-400 text-[10px] italic">Añade 3 rivales en orden de llegada</span>`; 
+        }
+
         function addTroop(id) { if (draft.squad.length < 6) { draft.squad.push({...TROOPS.find(x => x.id === id)}); updateSquadUI(); } }
         function removeTroop(i) { draft.squad.splice(i, 1); updateSquadUI(); }
 
-        // --- AJUSTE CLAVE: LAS TROPAS DUPLICADAS NO SUMAN ---
         function updateSquadUI() {
             document.getElementById('selected-squad-bar').innerHTML = draft.squad.map((t, i) => `<div onclick="removeTroop(${i})" class="bg-blue-900/60 rounded flex items-center justify-center text-[8px] font-black text-center p-1 border border-blue-400/30 text-shadow hover:scale-105 transition-transform cursor-pointer">${t.name}</div>`).join('');
-            
-            const counts = {};
-            const uniqueTroopIds = new Set();
-            draft.squad.forEach(t => {
-                if (!uniqueTroopIds.has(t.id)) {
-                    uniqueTroopIds.add(t.id);
-                    t.attrs.forEach(a => counts[a] = (counts[a]||0)+1);
-                }
-            });
-
+            const counts = {}; const uniqueTroopIds = new Set();
+            draft.squad.forEach(t => { if (!uniqueTroopIds.has(t.id)) { uniqueTroopIds.add(t.id); t.attrs.forEach(a => counts[a] = (counts[a]||0)+1); } });
             document.getElementById('active-synergies').innerHTML = Object.entries(counts).map(([aId, count]) => {
                 const a = ATTRIBUTES.find(x => x.id === aId);
                 return `<div class="px-2 py-0.5 rounded-full ${a.color} text-[9px] font-bold border border-white/20 ${count >= 2 ? 'ring-2 ring-white scale-105' : 'opacity-60'}"><span class="drop-shadow-strong">${a.icon}</span> ${count}</div>`;
             }).join('');
         }
 
-        function selectRank(rank) { draft.rank = rank; document.querySelectorAll('.rank-btn').forEach(btn => { btn.classList.remove('ring-4', 'ring-white', 'scale-110'); if (parseInt(btn.dataset.rank) === rank) btn.classList.add('ring-4', 'ring-white', 'scale-110'); }); }
-        function saveMatch() { if (!draft.leader || !draft.rank) return alert("¡Datos incompletos!"); const isEdit = editingIdx !== null; if (isEdit) { matchHistory[editingIdx] = { ...draft, date: matchHistory[editingIdx].date }; } else { draft.date = new Date().toISOString(); matchHistory.push({ ...draft }); } localStorage.setItem('crt_v91_data', JSON.stringify(matchHistory)); if(isEdit) { goToHistory(); } else { goHome(); } }
+        function selectRank(rank) { 
+            draft.rank = rank; document.querySelectorAll('.rank-btn').forEach(btn => { btn.classList.remove('ring-4', 'ring-white', 'scale-110'); if (parseInt(btn.dataset.rank) === rank) btn.classList.add('ring-4', 'ring-white', 'scale-110'); });
+            updateRivalsBar();
+        }
+
+        function saveMatch() { if (!draft.leader || !draft.rank) return alert("¡Datos incompletos!"); const isEdit = editingIdx !== null; if (isEdit) { matchHistory[editingIdx] = { ...draft, date: matchHistory[editingIdx].date }; } else { draft.date = new Date().toISOString(); matchHistory.push({ ...draft }); } localStorage.setItem('crt_v92_data', JSON.stringify(matchHistory)); if(isEdit) { goToHistory(); } else { goHome(); } }
         function updateHomeStats() { const top2 = matchHistory.filter(m => m.rank <= 2).length; const rate = matchHistory.length ? Math.round((top2/matchHistory.length)*100) : 0; const el = document.getElementById('home-winrate'); el.innerText = `${rate}%`; el.className = `text-6xl font-black drop-shadow-strong ${rate >= 50 ? 'text-green-400' : 'text-red-400'}`; }
-        function goToAddMatch() { editingIdx = null; draft = { leader: null, rivals: [], squad: [], rank: null }; selectRank(null); navigate('view-form'); renderFormInputs(); }
-        function goToHistory() { document.getElementById('edit-indicator').classList.add('hidden'); navigate('view-history'); renderHistory(); }
+        function goToAddMatch() { editingIdx = null; draft = { leader: null, rivals: [], squad: [], rank: null, modifier: null }; selectRank(null); navigate('view-form'); renderFormInputs(); }
+        function goToHistory() { navigate('view-history'); renderHistory(); }
         function goToLeaderGuide() { navigate('view-guide-leaders'); renderLGuide(); }
         function goToAttrGuide() { navigate('view-guide-attrs'); renderAGuide(); }
+        function goToModGuide() { navigate('view-guide-mods'); renderMGuide(); }
         
         function renderHistory() { 
             document.getElementById('history-list').innerHTML = [...matchHistory].reverse().map((m, i) => { 
                 const realIdx = matchHistory.length - 1 - i;
                 const leader = LEADERS.find(x => x.id === m.leader);
-                
-                const counts = {};
-                const uniqueIds = new Set();
-                m.squad.forEach(t => {
-                    if(!uniqueIds.has(t.id)) {
-                        uniqueIds.add(t.id);
-                        t.attrs.forEach(a => counts[a] = (counts[a]||0)+1);
-                    }
-                });
-
+                const mod = m.modifier ? MODIFIERS.find(x => x.id === m.modifier) : null;
+                const counts = {}; const uniqueIds = new Set();
+                m.squad.forEach(t => { if(!uniqueIds.has(t.id)) { uniqueIds.add(t.id); t.attrs.forEach(a => counts[a] = (counts[a]||0)+1); } });
                 const activeBadges = Object.entries(counts).filter(([_, c]) => c >= 2).map(([aId, c]) => {
                     const a = ATTRIBUTES.find(x => x.id === aId);
                     return `<span class="inline-flex items-center gap-1 ${a.color} px-1.5 py-0.5 rounded-full text-[9px] font-bold shadow-sm border border-white/20"><span class="drop-shadow-strong">${a.icon}</span> ${c}</span>`;
@@ -298,7 +372,10 @@
                 <div class="bg-[#1f232f]/90 p-4 rounded-2xl border-l-8 rank-${m.rank} flex justify-between items-center shadow-lg backdrop-blur-sm">
                     <div class="flex items-center gap-4">
                         <div class="relative"><div class="${leader.color} w-14 h-14 rounded-2xl flex items-center justify-center text-4xl shadow-inner border border-white/10"><span class="drop-shadow-strong">${leader.icon}</span></div><div class="absolute -top-2 -right-2 bg-gray-900 text-white text-[10px] font-black px-1.5 py-0.5 rounded border border-gray-600">#${m.rank}</div></div>
-                        <div><div class="text-[10px] text-white font-black uppercase tracking-wider drop-shadow-md text-shadow">${new Date(m.date).toLocaleDateString()} ${new Date(m.date).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div><div class="flex flex-wrap gap-1 mt-1.5 min-h-[20px]">${activeBadges || '<span class="text-[10px] text-gray-400 italic">Sin sinergias</span>'}</div></div>
+                        <div>
+                            <div class="text-[10px] text-white font-black uppercase tracking-wider drop-shadow-md text-shadow">${new Date(m.date).toLocaleDateString()} ${mod ? `| ${mod.icon}` : ''}</div>
+                            <div class="flex flex-wrap gap-1 mt-1.5 min-h-[20px]">${activeBadges || '<span class="text-[10px] text-gray-400 italic">Sin sinergias</span>'}</div>
+                        </div>
                     </div>
                     <div class="flex gap-2"><button onclick="editMatch(${realIdx})" class="p-2 bg-blue-900/30 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-900/50 transition-colors"><i class="bi bi-gear-fill"></i></button><button onclick="deleteMatch(${realIdx})" class="p-2 bg-red-900/30 text-red-400 rounded-lg border border-red-500/30 hover:bg-red-900/50 transition-colors"><i class="bi bi-trash-fill"></i></button></div>
                 </div>`; 
@@ -307,58 +384,60 @@
 
         function goToStats() {
             const last20 = matchHistory.slice(-20);
-            const maxCapacity = 20;
             const counts = {1:0, 2:0, 3:0, 4:0};
-            const attrStats = {}; 
-            const troopStats = {}; 
+            const attrStats = {}; const troopStats = {}; 
+            const myLeaderUsage = {}; const vsLeaderStats = {};
+            const modCorrelations = {};
 
             last20.forEach(m => {
                 counts[m.rank]++;
-                const countsInMatch = {};
-                const uniqueIds = new Set();
-                m.squad.forEach(t => {
-                    if(!uniqueIds.has(t.id)) {
-                        uniqueIds.add(t.id);
-                        t.attrs.forEach(a => countsInMatch[a] = (countsInMatch[a]||0)+1);
-                    }
-                });
+                myLeaderUsage[m.leader] = (myLeaderUsage[m.leader] || 0) + 1;
+                const matchAttrs = new Set(); const uniqueIds = new Set();
+                m.squad.forEach(t => { if(!uniqueIds.has(t.id)) { uniqueIds.add(t.id); t.attrs.forEach(a => { if(!attrStats[a]) attrStats[a] = {1:0,2:0,3:0,4:0}; attrStats[a][m.rank]++; matchAttrs.add(a); }); } });
 
-                Object.entries(countsInMatch).forEach(([aId, count]) => {
-                    if(count >= 2) {
-                        if(!attrStats[aId]) attrStats[aId] = {1:0, 2:0, 3:0, 4:0};
-                        attrStats[aId][m.rank]++;
-                    }
-                });
+                if(m.modifier) {
+                    if(!modCorrelations[m.modifier]) modCorrelations[m.modifier] = {};
+                    matchAttrs.forEach(aId => {
+                        if(!modCorrelations[m.modifier][aId]) modCorrelations[m.modifier][aId] = {wins:0, total:0};
+                        modCorrelations[m.modifier][aId].total++;
+                        if(m.rank <= 2) modCorrelations[m.modifier][aId].wins++;
+                    });
+                }
+
+                const availableRanks = [1, 2, 3, 4].filter(r => r !== m.rank);
+                if (m.rivals) m.rivals.forEach((rivalId, idx) => { if(!vsLeaderStats[rivalId]) vsLeaderStats[rivalId] = {winsVs: 0, totalVs: 0}; vsLeaderStats[rivalId].totalVs++; if(m.rank < availableRanks[idx]) vsLeaderStats[rivalId].winsVs++; });
                 m.squad.forEach(t => { if(!troopStats[t.id]) troopStats[t.id] = {wins:0, losses:0, total:0}; troopStats[t.id].total++; if(m.rank <= 2) troopStats[t.id].wins++; else troopStats[t.id].losses++; });
             });
 
-            const chartHtml = [1,2,3,4].map(r => { const height = (counts[r] / maxCapacity) * 100; return `<div class="bar-container w-16 relative bg-gray-800 rounded-t-lg border border-gray-600"><div class="w-full rank-${r} rounded-t-lg absolute bottom-0 transition-all duration-1000 ease-out" style="height: ${height}%"></div><span class="absolute -top-6 w-full text-center text-xs font-black z-10 text-shadow">${counts[r]}</span></div>`; }).join('');
+            const chartHtml = [1,2,3,4].map(r => { 
+                const height = (counts[r] / last20.length) * 100 || 0; 
+                return `<div class="bar-container w-16 relative bg-gray-800 rounded-t-lg border border-gray-600 group" title="Partidas: ${counts[r]}"><div class="w-full rank-${r} rounded-t-lg absolute bottom-0 transition-all duration-1000 ease-out" style="height: ${height}%"></div><span class="absolute -top-6 w-full text-center text-xs font-black z-10 text-shadow group-hover:scale-125 transition-transform">${counts[r]}</span></div>`; 
+            }).join('');
             document.getElementById('stats-chart').innerHTML = `<div class="chart-grid" style="bottom: 25%"></div><div class="chart-grid" style="bottom: 50%"></div><div class="chart-grid" style="bottom: 75%"></div>${chartHtml}`;
 
-            let htmlAttr = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Dominio de Sinergias (min 2)</h3>`;
-            [1,2,3,4].forEach(rank => {
-                const bestAttrId = Object.keys(attrStats).sort((a,b) => attrStats[b][rank] - attrStats[a][rank])[0];
-                if(bestAttrId && attrStats[bestAttrId][rank] > 0) {
-                    const a = ATTRIBUTES.find(x => x.id === bestAttrId);
-                    const colorClass = rank <= 2 ? 'text-green-400' : 'text-red-400';
-                    htmlAttr += `<div class="bg-[#1f232f]/90 p-4 rounded-2xl border border-gray-600 flex justify-between items-center mb-2 shadow-sm"><div><p class="text-[10px] font-black text-gray-500 uppercase">Más frecuente en ${rank}º</p><p class="font-black text-white uppercase flex items-center gap-1"><span class="drop-shadow-strong">${a.icon}</span> ${a.name}</p></div><div class="text-right"><p class="${colorClass} font-black text-xl drop-shadow-md">${attrStats[bestAttrId][rank]}</p><p class="text-[9px] text-gray-500">VECES</p></div></div>`;
-                }
+            let htmlMod = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Sinergia TOP por Modificador</h3><div class="grid grid-cols-1 gap-2">`;
+            Object.entries(modCorrelations).forEach(([mId, attrs]) => {
+                const mod = MODIFIERS.find(x => x.id === mId);
+                const bestAttrEntry = Object.entries(attrs).sort((a,b) => (b[1].wins/b[1].total) - (a[1].wins/a[1].total))[0];
+                const attr = ATTRIBUTES.find(x => x.id === bestAttrEntry[0]);
+                const wr = Math.round((bestAttrEntry[1].wins/bestAttrEntry[1].total)*100);
+                htmlMod += `<div class="bg-black/40 p-3 rounded-xl border border-white/10 flex justify-between items-center"><div class="flex items-center gap-2"><span class="text-lg">${mod.icon}</span><span class="text-[9px] uppercase font-bold text-gray-400">${mod.name}</span></div><div class="flex items-center gap-2 font-black text-xs text-shadow"><span class="${attr.color} px-2 py-0.5 rounded-full border border-white/20">${attr.icon} ${attr.name}</span> <span class="text-green-400">${wr}% WR</span></div></div>`;
             });
-            document.getElementById('stats-analysis').innerHTML = htmlAttr;
+            document.getElementById('stats-mod-correl').innerHTML = htmlMod + `</div>`;
 
-            let htmlChar = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Tus Fichajes Estrella</h3>`;
-            const bestTroopId = Object.keys(troopStats).filter(id => troopStats[id].total >= 3).sort((a,b) => (troopStats[b].wins/troopStats[b].total) - (troopStats[a].wins/troopStats[a].total))[0];
-            const worstTroopId = Object.keys(troopStats).filter(id => troopStats[id].total >= 3).sort((a,b) => (troopStats[b].losses/troopStats[b].total) - (troopStats[a].losses/troopStats[a].total))[0];
-            if(bestTroopId) { const t = TROOPS.find(x => x.id == bestTroopId); const wr = Math.round((troopStats[bestTroopId].wins / troopStats[bestTroopId].total) * 100); htmlChar += `<div class="bg-green-900/40 p-4 rounded-2xl border border-green-500/50 mb-2 flex justify-between items-center backdrop-blur-sm"><div><p class="text-[10px] font-black text-green-400 uppercase">MVP (WR ${wr}%)</p><p class="font-bold text-white text-shadow">${t.name}</p></div><span class="text-2xl drop-shadow-strong">🏆</span></div>`; }
-            if(worstTroopId) { const t = TROOPS.find(x => x.id == worstTroopId); const lr = Math.round((troopStats[worstTroopId].losses / troopStats[worstTroopId].total) * 100); htmlChar += `<div class="bg-red-900/40 p-4 rounded-2xl border border-red-500/50 flex justify-between items-center backdrop-blur-sm"><div><p class="text-[10px] font-black text-red-400 uppercase">Tóxico (Loss ${lr}%)</p><p class="font-bold text-white text-shadow">${t.name}</p></div><span class="text-2xl drop-shadow-strong">💀</span></div>`; }
-            document.getElementById('stats-chars').innerHTML = htmlChar;
+            let htmlUsage = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Uso de Líderes (Últimas 20)</h3><div class="grid grid-cols-2 gap-2">`;
+            Object.entries(myLeaderUsage).sort((a,b) => b[1] - a[1]).forEach(([lId, count]) => { const l = LEADERS.find(x => x.id === lId); const wins = last20.filter(m => m.leader === lId && m.rank <= 2).length; const wr = Math.round((wins/count)*100); htmlUsage += `<div class="bg-black/40 p-3 rounded-xl border border-white/10 flex items-center gap-2"><span class="text-xl">${l.icon}</span><div><p class="text-[10px] font-black text-white uppercase leading-none">${count} partidas</p><p class="text-[9px] text-green-400 font-bold">${wr}% WR</p></div></div>`; });
+            document.getElementById('stats-leader-usage').innerHTML = htmlUsage + `</div>`;
+
             navigate('view-stats');
         }
 
         function renderLGuide() { document.getElementById('guide-leaders-list').innerHTML = LEADERS.map(l => `<div class="bg-[#1f232f]/95 p-4 rounded-2xl border border-gray-600 shadow-lg"><div class="flex items-center gap-4 mb-3"><div class="${l.color} w-12 h-12 rounded-xl flex items-center justify-center text-3xl border border-white/20"><span class="drop-shadow-strong">${l.icon}</span></div><div><h3 class="font-black text-white uppercase text-lg text-shadow">${l.name}</h3><p class="text-yellow-400 text-xs font-bold italic">${l.skill}</p></div></div><p class="text-sm text-gray-300 leading-relaxed">${l.desc}</p></div>`).join(''); }
         function renderAGuide() { document.getElementById('guide-attrs-list').innerHTML = ATTRIBUTES.map(a => `<div class="bg-[#1f232f]/95 p-4 rounded-2xl border border-gray-600 shadow-lg relative overflow-hidden"><div class="flex items-center gap-3 mb-4"><div class="${a.color} w-10 h-10 rounded-lg flex items-center justify-center text-xl border border-white/20"><span class="drop-shadow-strong">${a.icon}</span></div><h3 class="font-black text-white uppercase text-shadow">${a.name}</h3></div><div class="grid grid-cols-1 gap-3"><div class="bg-black/40 p-3 rounded-xl border border-white/5"><span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-1">2 Unidades</span><p class="text-xs text-gray-300">${a.c2}</p></div><div class="bg-black/40 p-3 rounded-xl border border-white/5"><span class="text-[10px] font-black text-yellow-500 uppercase tracking-widest block mb-1">4 Unidades</span><p class="text-xs text-gray-300">${a.c4}</p></div></div></div>`).join(''); }
-        function editMatch(idx) { editingIdx = idx; draft = JSON.parse(JSON.stringify(matchHistory[idx])); document.getElementById('form-title').innerText = "Editar"; document.getElementById('edit-indicator').classList.remove('hidden'); navigate('view-form'); renderFormInputs(); }
-        function deleteMatch(idx) { if(confirm('¿Borrar?')) { matchHistory.splice(idx, 1); localStorage.setItem('crt_v91_data', JSON.stringify(matchHistory)); renderHistory(); } }
+        function renderMGuide() { document.getElementById('guide-mods-list').innerHTML = MODIFIERS.map(m => `<div class="bg-[#1f232f]/95 p-4 rounded-2xl border border-gray-600 shadow-lg"><div class="flex items-center gap-3 mb-3"><div class="bg-gray-700 w-12 h-12 rounded-xl flex items-center justify-center text-2xl border border-white/10"><span class="drop-shadow-strong">${m.icon}</span></div><div><h3 class="font-black text-white uppercase text-shadow">${m.name}</h3><p class="text-green-400 text-[10px] font-black uppercase tracking-widest">${m.rank}</p></div></div><p class="text-xs text-gray-300 leading-relaxed">${m.desc}</p></div>`).join(''); }
+        
+        function editMatch(idx) { editingIdx = idx; draft = JSON.parse(JSON.stringify(matchHistory[idx])); document.getElementById('form-title').innerText = "Editar Registro"; document.getElementById('edit-indicator').classList.remove('hidden'); navigate('view-form'); renderFormInputs(); selectRank(draft.rank); }
+        function deleteMatch(idx) { if(confirm('¿Borrar?')) { matchHistory.splice(idx, 1); localStorage.setItem('crt_v92_data', JSON.stringify(matchHistory)); renderHistory(); } }
         updateHomeStats();
     </script>
 </body>
