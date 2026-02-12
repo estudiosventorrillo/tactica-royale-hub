@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Táctica Royale Fan-Hub v12.02.1</title>
+    <title>Táctica Royale Fan-Hub v9.2.1</title>
     
     <link rel="icon" type="image/png" href="https://vectorseek.com/wp-content/uploads/2023/09/Clash-Royale-Icon-Logo-Vector.svg-.png">
 
@@ -150,17 +150,18 @@
         </div>
 
         <div id="view-history" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">HISTORIAL</h2></div><div id="history-list" class="space-y-3 p-4"></div></div>
-        <div id="view-stats" class="hidden pb-24"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">BIG DATA</h2></div><div class="p-4">
-            <div class="bg-[#1f232f]/90 p-6 rounded-3xl border border-gray-600 mb-6 shadow-xl">
+        <div id="view-stats" class="hidden pb-24"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">BIG DATA</h2></div><div class="p-4 space-y-8">
+            <div class="bg-[#1f232f]/90 p-6 rounded-3xl border border-gray-600 shadow-xl">
                 <h3 class="text-xs font-black text-gray-400 uppercase mb-4 text-center">Rendimiento Últimas 20</h3>
                 <div class="flex justify-around items-end h-48 gap-3 px-2 relative" id="stats-chart"></div>
                 <div class="flex justify-around mt-3 px-2 text-xs font-black text-gray-400"><span>1º</span><span>2º</span><span>3º</span><span>4º</span></div>
             </div>
-            <div id="stats-leader-usage" class="mb-6"></div>
-            <div id="stats-analysis" class="space-y-4 mb-6"></div>
-            <div id="stats-mod-correl" class="mb-6"></div>
-            <div id="stats-vs-leaders" class="mb-6"></div>
-            <div id="stats-chars" class="space-y-4"></div>
+            <div id="stats-leader-usage"></div>
+            <div id="stats-analysis" class="space-y-3"></div>
+            <div id="stats-mod-correl"></div>
+            <div id="stats-vs-leaders"></div>
+            <div id="stats-elixir-curve"></div>
+            <div id="stats-chars" class="space-y-3 pb-8"></div>
         </div></div>
         <div id="view-guide-leaders" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">LÍDERES</h2></div><div id="guide-leaders-list" class="space-y-4 p-4"></div></div>
         <div id="view-guide-attrs" class="hidden pb-20"><div class="sticky-header p-4 flex items-center gap-3"><span onclick="goHome()" class="text-3xl cursor-pointer drop-shadow-strong hover:scale-110 transition-transform">⬅️</span><h2 class="text-2xl font-black uppercase text-shadow">ATRIBUTOS</h2></div><div id="guide-attrs-list" class="space-y-4 p-4"></div></div>
@@ -185,17 +186,11 @@
             <div class="bg-[#1f232f] border-4 border-green-500 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-green-500 text-black px-4 py-1 rounded-full font-black text-xs">NUEVA VERSIÓN v9.2</div>
                 <h2 class="text-2xl font-black text-center text-white uppercase mb-4 text-shadow drop-shadow-md">¡Actualización Lista! ⚔️</h2>
-                <div class="space-y-4 text-sm text-gray-200 leading-relaxed">
-                    <p class="text-center font-bold text-green-400">He metido un montón de mejoras para ayudarte a ganar:</p>
-                    <ul class="bg-black/30 p-4 rounded-xl space-y-3 border border-white/10 text-xs">
-                        <li class="flex gap-2"><span>🟢</span> <div><strong>Modificadores:</strong> Nueva guía completa y registro de modificadores en tus partidas.</div></li>
-                        <li class="flex gap-2"><span>📊</span> <div><strong>Big Data Pro:</strong> Mira el Win Rate de tus líderes y qué sinergias funcionan mejor con cada modificador.</div></li>
-                        <li class="flex gap-2"><span>👑</span> <div><strong>Orden de Rivales:</strong> Ahora registra a tus rivales según su posición real en la partida.</div></li>
-                        <li class="flex gap-2"><span>📈</span> <div><strong>Interactividad:</strong> Toca las barras de Big Data para ver el número exacto de partidas.</div></li>
-                    </ul>
-                    <p class="text-[10px] text-gray-400 text-center italic">Nota: Tus partidas guardadas se han migrado automáticamente a esta versión. ¡Nada se pierde!</p>
+                <div class="space-y-4 text-sm text-gray-200 leading-relaxed text-center">
+                    <p class="font-bold text-green-400">¡Sinergias, Modificadores y Análisis PRO!</p>
+                    <p class="text-xs text-gray-300">Hemos corregido los errores de visualización en Big Data y añadido nuevas métricas de experto.</p>
                 </div>
-                <button onclick="closeUpdate()" class="clash-btn bg-green-500 text-white w-full py-4 rounded-xl font-black mt-6 text-lg hover:scale-105 transition-transform">¡BRUTAL, A JUGAR!</button>
+                <button onclick="closeUpdate()" class="clash-btn bg-green-500 text-white w-full py-4 rounded-xl font-black mt-6 text-lg hover:scale-105 transition-transform">¡A POR EL TOP!</button>
             </div>
         </div>
     </main>
@@ -275,52 +270,31 @@
             { id: 24, name: 'Monje', cost: 5, attrs: ['as', 'super'] }
         ];
 
-        // --- MIGRACIÓN DE DATOS ---
         const CURRENT_KEY = 'crt_v92_data';
         const OLD_KEY = 'crt_v91_data';
-
-        if (!localStorage.getItem(CURRENT_KEY) && localStorage.getItem(OLD_KEY)) {
-            localStorage.setItem(CURRENT_KEY, localStorage.getItem(OLD_KEY));
-        }
+        if (!localStorage.getItem(CURRENT_KEY) && localStorage.getItem(OLD_KEY)) localStorage.setItem(CURRENT_KEY, localStorage.getItem(OLD_KEY));
 
         let draft = { leader: null, rivals: [], squad: [], rank: null, modifier: null };
         let matchHistory = JSON.parse(localStorage.getItem(CURRENT_KEY)) || [];
         let editingIdx = null;
 
         document.addEventListener('DOMContentLoaded', () => { 
-            if (!localStorage.getItem('crt_welcome_shown_v9')) { 
-                document.getElementById('welcome-modal').classList.remove('hidden'); 
-            } else if (!localStorage.getItem('crt_v92_update_notified')) {
-                document.getElementById('update-modal').classList.remove('hidden');
-            }
+            if (!localStorage.getItem('crt_welcome_shown_v9')) document.getElementById('welcome-modal').classList.remove('hidden'); 
+            else if (!localStorage.getItem('crt_v92_update_notified')) document.getElementById('update-modal').classList.remove('hidden');
             updateHomeStats();
         });
 
-        function closeWelcome() { 
-            document.getElementById('welcome-modal').classList.add('hidden'); 
-            localStorage.setItem('crt_welcome_shown_v9', 'true'); 
-            if (!localStorage.getItem('crt_v92_update_notified')) {
-                document.getElementById('update-modal').classList.remove('hidden');
-            }
-        }
-
-        function closeUpdate() {
-            document.getElementById('update-modal').classList.add('hidden');
-            localStorage.setItem('crt_v92_update_notified', 'true');
-        }
-
+        function closeWelcome() { document.getElementById('welcome-modal').classList.add('hidden'); localStorage.setItem('crt_welcome_shown_v9', 'true'); if (!localStorage.getItem('crt_v92_update_notified')) document.getElementById('update-modal').classList.remove('hidden'); }
+        function closeUpdate() { document.getElementById('update-modal').classList.add('hidden'); localStorage.setItem('crt_v92_update_notified', 'true'); }
         function navigate(id) { document.querySelectorAll('main > div').forEach(div => div.classList.add('hidden')); document.getElementById(id).classList.remove('hidden'); window.scrollTo(0, 0); }
         function goHome() { editingIdx = null; document.getElementById('edit-indicator').classList.add('hidden'); updateHomeStats(); navigate('view-home'); }
-        function cancelEdit() { if(editingIdx !== null) { goToHistory(); } else { goHome(); } }
+        function cancelEdit() { if(editingIdx !== null) goToHistory(); else goHome(); }
 
         function renderFormInputs() {
-            document.getElementById('grid-match-mod').innerHTML = MODIFIERS.map(m => `<div onclick="setMatchMod('${m.id}', this)" class="mod-opt clash-btn bg-gray-800 rounded-xl p-2 flex flex-col items-center h-20 ${draft.modifier === m.id ? 'selected-mod' : ''} border-2 border-white/10 hover:scale-105 transition-transform cursor-pointer"><span class="text-xl drop-shadow-strong">${m.icon}</span><span class="text-[7px] font-black uppercase mt-1 text-center text-gray-300">${m.name}</span></div>`).join('');
+            document.getElementById('grid-match-mod').innerHTML = MODIFIERS.map(m => `<div onclick="setMatchMod('${m.id}', this)" class="mod-opt clash-btn bg-gray-800 rounded-xl p-2 flex flex-col items-center h-20 ${draft.modifier === m.id ? 'selected-mod' : ''} border-2 border-white/10 hover:scale-105 transition-transform cursor-pointer"><span class="text-xl drop-shadow-strong">${m.icon}</span><span class="text-[7px] font-black uppercase mt-1 text-center text-gray-300 leading-none">${m.name}</span></div>`).join('');
             document.getElementById('grid-my-leader').innerHTML = LEADERS.map(l => `<div onclick="setMyLeader('${l.id}', this)" class="l-opt clash-btn ${l.color} rounded-xl p-2 flex flex-col items-center h-24 ${draft.leader === l.id ? 'selected-leader' : ''} border-2 border-white/20 hover:scale-105 transition-transform cursor-pointer"><span class="text-3xl drop-shadow-strong">${l.icon}</span><span class="text-[9px] font-black uppercase mt-1 text-center text-shadow">${l.name}</span></div>`).join('');
             document.getElementById('grid-rivals').innerHTML = LEADERS.map(l => `<div onclick="addRival('${l.id}')" class="clash-btn bg-gray-800 rounded-lg p-2 flex flex-col items-center h-16 border-2 border-gray-600 hover:scale-105 transition-transform cursor-pointer"><span class="text-xl drop-shadow-strong">${l.icon}</span><span class="text-[8px] font-bold text-gray-400 mt-1">${l.name}</span></div>`).join('');
-            document.getElementById('grid-troops').innerHTML = TROOPS.map(t => {
-                const bgClass = `bg-elixir-${t.cost}`;
-                return `<div onclick="addTroop(${t.id})" class="clash-btn ${bgClass} rounded-lg p-1 flex flex-col items-center justify-center h-16 shadow-md border-b-4 hover:scale-105 transition-transform cursor-pointer"><div class="text-[9px] font-black text-center text-white text-shadow leading-tight">${t.name}</div><div class="flex gap-1 mt-1">${t.attrs.map(aId => `<span class="text-[12px] drop-shadow-strong">${ATTRIBUTES.find(x => x.id === aId).icon}</span>`).join('')}</div></div>`;
-            }).join('');
+            document.getElementById('grid-troops').innerHTML = TROOPS.map(t => `<div onclick="addTroop(${t.id})" class="clash-btn bg-elixir-${t.cost} rounded-lg p-1 flex flex-col items-center justify-center h-16 shadow-md border-b-4 hover:scale-105 transition-transform cursor-pointer"><div class="text-[9px] font-black text-center text-white text-shadow leading-tight">${t.name}</div><div class="flex gap-1 mt-1">${t.attrs.map(aId => `<span class="text-[12px] drop-shadow-strong">${ATTRIBUTES.find(x => x.id === aId).icon}</span>`).join('')}</div></div>`).join('');
             updateRivalsBar(); updateSquadUI();
         }
 
@@ -333,8 +307,7 @@
             const availableRanks = [1, 2, 3, 4].filter(r => r !== draft.rank);
             document.getElementById('selected-rivals-bar').innerHTML = draft.rivals.map((id, i) => {
                 const leader = LEADERS.find(x => x.id === id);
-                const rankAssigned = availableRanks[i] ? `${availableRanks[i]}º` : '?';
-                return `<div onclick="removeRival(${i})" class="${leader.color} w-12 h-12 rounded-full flex flex-col items-center justify-center text-xl shadow-lg border-2 border-white/30 hover:scale-105 transition-transform cursor-pointer relative"><span class="drop-shadow-strong">${leader.icon}</span><span class="absolute -top-1 -right-1 bg-black text-[8px] px-1 rounded border border-white/20">${rankAssigned}</span></div>`;
+                return `<div onclick="removeRival(${i})" class="${leader.color} w-12 h-12 rounded-full flex flex-col items-center justify-center text-xl shadow-lg border-2 border-white/30 hover:scale-105 transition-transform cursor-pointer relative"><span class="drop-shadow-strong">${leader.icon}</span><span class="absolute -top-1 -right-1 bg-black text-[8px] px-1 rounded border border-white/20">${availableRanks[i] || '?'}º</span></div>`;
             }).join('') || `<span class="text-gray-400 text-[10px] italic">Añade 3 rivales en orden de llegada</span>`; 
         }
 
@@ -342,7 +315,7 @@
         function removeTroop(i) { draft.squad.splice(i, 1); updateSquadUI(); }
 
         function updateSquadUI() {
-            document.getElementById('selected-squad-bar').innerHTML = draft.squad.map((t, i) => `<div onclick="removeTroop(${i})" class="bg-blue-900/60 rounded flex items-center justify-center text-[8px] font-black text-center p-1 border border-blue-400/30 text-shadow hover:scale-105 transition-transform cursor-pointer">${t.name}</div>`).join('');
+            document.getElementById('selected-squad-bar').innerHTML = draft.squad.map((t, i) => `<div onclick="removeTroop(${i})" class="bg-blue-900/60 rounded flex items-center justify-center text-[8px] font-black text-center p-1 border border-blue-400/30 text-shadow hover:scale-105 transition-transform cursor-pointer leading-tight">${t.name}</div>`).join('');
             const counts = {}; const uniqueTroopIds = new Set();
             draft.squad.forEach(t => { if (!uniqueTroopIds.has(t.id)) { uniqueTroopIds.add(t.id); t.attrs.forEach(a => counts[a] = (counts[a]||0)+1); } });
             document.getElementById('active-synergies').innerHTML = Object.entries(counts).map(([aId, count]) => {
@@ -351,12 +324,8 @@
             }).join('');
         }
 
-        function selectRank(rank) { 
-            draft.rank = rank; document.querySelectorAll('.rank-btn').forEach(btn => { btn.classList.remove('ring-4', 'ring-white', 'scale-110'); if (parseInt(btn.dataset.rank) === rank) btn.classList.add('ring-4', 'ring-white', 'scale-110'); });
-            updateRivalsBar();
-        }
-
-        function saveMatch() { if (!draft.leader || !draft.rank) return alert("¡Datos incompletos!"); const isEdit = editingIdx !== null; if (isEdit) { matchHistory[editingIdx] = { ...draft, date: matchHistory[editingIdx].date }; } else { draft.date = new Date().toISOString(); matchHistory.push({ ...draft }); } localStorage.setItem(CURRENT_KEY, JSON.stringify(matchHistory)); if(isEdit) { goToHistory(); } else { goHome(); } }
+        function selectRank(rank) { draft.rank = rank; document.querySelectorAll('.rank-btn').forEach(btn => { btn.classList.remove('ring-4', 'ring-white', 'scale-110'); if (parseInt(btn.dataset.rank) === rank) btn.classList.add('ring-4', 'ring-white', 'scale-110'); }); updateRivalsBar(); }
+        function saveMatch() { if (!draft.leader || !draft.rank) return alert("¡Datos incompletos!"); if (editingIdx !== null) matchHistory[editingIdx] = { ...draft, date: matchHistory[editingIdx].date }; else { draft.date = new Date().toISOString(); matchHistory.push({ ...draft }); } localStorage.setItem(CURRENT_KEY, JSON.stringify(matchHistory)); goHome(); }
         function updateHomeStats() { const top2 = matchHistory.filter(m => m.rank <= 2).length; const rate = matchHistory.length ? Math.round((top2/matchHistory.length)*100) : 0; const el = document.getElementById('home-winrate'); el.innerText = `${rate}%`; el.className = `text-6xl font-black drop-shadow-strong ${rate >= 50 ? 'text-green-400' : 'text-red-400'}`; }
         function goToAddMatch() { editingIdx = null; draft = { leader: null, rivals: [], squad: [], rank: null, modifier: null }; selectRank(null); navigate('view-form'); renderFormInputs(); }
         function goToHistory() { navigate('view-history'); renderHistory(); }
@@ -375,53 +344,77 @@
                     const a = ATTRIBUTES.find(x => x.id === aId);
                     return `<span class="inline-flex items-center gap-1 ${a.color} px-1.5 py-0.5 rounded-full text-[9px] font-bold shadow-sm border border-white/20"><span class="drop-shadow-strong">${a.icon}</span> ${c}</span>`;
                 }).join('');
-
-                return `
-                <div class="bg-[#1f232f]/90 p-4 rounded-2xl border-l-8 rank-${m.rank} flex justify-between items-center shadow-lg backdrop-blur-sm">
-                    <div class="flex items-center gap-4">
-                        <div class="relative"><div class="${leader.color} w-14 h-14 rounded-2xl flex items-center justify-center text-4xl shadow-inner border border-white/10"><span class="drop-shadow-strong">${leader.icon}</span></div><div class="absolute -top-2 -right-2 bg-gray-900 text-white text-[10px] font-black px-1.5 py-0.5 rounded border border-gray-600">#${m.rank}</div></div>
-                        <div>
-                            <div class="text-[10px] text-white font-black uppercase tracking-wider drop-shadow-md text-shadow">${new Date(m.date).toLocaleDateString()} ${mod ? `| ${mod.icon}` : ''}</div>
-                            <div class="flex flex-wrap gap-1 mt-1.5 min-h-[20px]">${activeBadges || '<span class="text-[10px] text-gray-400 italic">Sin sinergias</span>'}</div>
-                        </div>
-                    </div>
-                    <div class="flex gap-2"><button onclick="editMatch(${realIdx})" class="p-2 bg-blue-900/30 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-900/50 transition-colors"><i class="bi bi-gear-fill"></i></button><button onclick="deleteMatch(${realIdx})" class="p-2 bg-red-900/30 text-red-400 rounded-lg border border-red-500/30 hover:bg-red-900/50 transition-colors"><i class="bi bi-trash-fill"></i></button></div>
-                </div>`; 
+                return `<div class="bg-[#1f232f]/90 p-4 rounded-2xl border-l-8 rank-${m.rank} flex justify-between items-center shadow-lg backdrop-blur-sm"><div class="flex items-center gap-4"><div class="relative"><div class="${leader.color} w-14 h-14 rounded-2xl flex items-center justify-center text-4xl shadow-inner border border-white/10"><span class="drop-shadow-strong">${leader.icon}</span></div><div class="absolute -top-2 -right-2 bg-gray-900 text-white text-[10px] font-black px-1.5 py-0.5 rounded border border-gray-600">#${m.rank}</div></div><div><div class="text-[10px] text-white font-black uppercase tracking-wider drop-shadow-md text-shadow">${new Date(m.date).toLocaleDateString()} ${mod ? `| ${mod.icon}` : ''}</div><div class="flex flex-wrap gap-1 mt-1.5 min-h-[20px]">${activeBadges || '<span class="text-[10px] text-gray-400 italic">Sin sinergias</span>'}</div></div></div><div class="flex gap-2"><button onclick="editMatch(${realIdx})" class="p-2 bg-blue-900/30 text-blue-400 rounded-lg border border-blue-500/30 hover:bg-blue-900/50 transition-colors"><i class="bi bi-gear-fill"></i></button><button onclick="deleteMatch(${realIdx})" class="p-2 bg-red-900/30 text-red-400 rounded-lg border border-red-500/30 hover:bg-red-900/50 transition-colors"><i class="bi bi-trash-fill"></i></button></div></div>`; 
             }).join(''); 
         }
 
         function goToStats() {
             const last20 = matchHistory.slice(-20);
-            const counts = {1:0, 2:0, 3:0, 4:0};
+            if (!last20.length) return navigate('view-stats');
+
+            const rankCounts = {1:0, 2:0, 3:0, 4:0};
             const attrStats = {}; const troopStats = {}; 
             const myLeaderUsage = {}; const vsLeaderStats = {};
-            const modCorrelations = {};
+            const modCorrelations = {}; const elixirCurve = {total: 0, wins: 0, count: 0};
 
             last20.forEach(m => {
-                counts[m.rank]++;
+                rankCounts[m.rank]++;
                 myLeaderUsage[m.leader] = (myLeaderUsage[m.leader] || 0) + 1;
+                
+                // Elixir Promedio
+                const avgElixir = m.squad.reduce((sum, t) => sum + t.cost, 0) / (m.squad.length || 1);
+                elixirCurve.total += avgElixir;
+                if(m.rank <= 2) { elixirCurve.wins += avgElixir; elixirCurve.count++; }
+
                 const matchAttrs = new Set(); const uniqueIds = new Set();
-                m.squad.forEach(t => { if(!uniqueIds.has(t.id)) { uniqueIds.add(t.id); t.attrs.forEach(a => { if(!attrStats[a]) attrStats[a] = {1:0,2:0,3:0,4:0}; attrStats[a][m.rank]++; matchAttrs.add(a); }); } });
+                m.squad.forEach(t => { 
+                    if(!uniqueIds.has(t.id)) { 
+                        uniqueIds.add(t.id); 
+                        t.attrs.forEach(a => { 
+                            if(!attrStats[a]) attrStats[a] = {1:0,2:0,3:0,4:0}; 
+                            attrStats[a][m.rank]++; 
+                            matchAttrs.add(a); 
+                        }); 
+                        if(!troopStats[t.id]) troopStats[t.id] = {wins:0, total:0};
+                        troopStats[t.id].total++; if(m.rank <= 2) troopStats[t.id].wins++;
+                    }
+                });
 
                 if(m.modifier) {
                     if(!modCorrelations[m.modifier]) modCorrelations[m.modifier] = {};
                     matchAttrs.forEach(aId => {
                         if(!modCorrelations[m.modifier][aId]) modCorrelations[m.modifier][aId] = {wins:0, total:0};
-                        modCorrelations[m.modifier][aId].total++;
-                        if(m.rank <= 2) modCorrelations[m.modifier][aId].wins++;
+                        modCorrelations[m.modifier][aId].total++; if(m.rank <= 2) modCorrelations[m.modifier][aId].wins++;
                     });
                 }
 
                 const availableRanks = [1, 2, 3, 4].filter(r => r !== m.rank);
-                if (m.rivals) m.rivals.forEach((rivalId, idx) => { if(!vsLeaderStats[rivalId]) vsLeaderStats[rivalId] = {winsVs: 0, totalVs: 0}; vsLeaderStats[rivalId].totalVs++; if(m.rank < availableRanks[idx]) vsLeaderStats[rivalId].winsVs++; });
-                m.squad.forEach(t => { if(!troopStats[t.id]) troopStats[t.id] = {wins:0, losses:0, total:0}; troopStats[t.id].total++; if(m.rank <= 2) troopStats[t.id].wins++; else troopStats[t.id].losses++; });
+                if (m.rivals) m.rivals.forEach((rivalId, idx) => { 
+                    if(!vsLeaderStats[rivalId]) vsLeaderStats[rivalId] = {winsVs: 0, totalVs: 0}; 
+                    vsLeaderStats[rivalId].totalVs++; if(m.rank < availableRanks[idx]) vsLeaderStats[rivalId].winsVs++; 
+                });
             });
 
+            // RENDERING
             const chartHtml = [1,2,3,4].map(r => { 
-                const height = (counts[r] / last20.length) * 100 || 0; 
-                return `<div class="bar-container w-16 relative bg-gray-800 rounded-t-lg border border-gray-600 group" title="Partidas: ${counts[r]}"><div class="w-full rank-${r} rounded-t-lg absolute bottom-0 transition-all duration-1000 ease-out" style="height: ${height}%"></div><span class="absolute -top-6 w-full text-center text-xs font-black z-10 text-shadow group-hover:scale-125 transition-transform">${counts[r]}</span></div>`; 
+                const height = (rankCounts[r] / last20.length) * 100 || 0; 
+                return `<div class="bar-container w-16 relative bg-gray-800 rounded-t-lg border border-gray-600 group" title="Partidas: ${rankCounts[r]}"><div class="w-full rank-${r} rounded-t-lg absolute bottom-0 transition-all duration-1000 ease-out" style="height: ${height}%"></div><span class="absolute -top-6 w-full text-center text-xs font-black z-10 text-shadow group-hover:scale-125 transition-transform">${rankCounts[r]}</span></div>`; 
             }).join('');
             document.getElementById('stats-chart').innerHTML = `<div class="chart-grid" style="bottom: 25%"></div><div class="chart-grid" style="bottom: 50%"></div><div class="chart-grid" style="bottom: 75%"></div>${chartHtml}`;
+
+            let htmlUsage = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Uso de Líderes (Últimas 20)</h3><div class="grid grid-cols-2 gap-2">`;
+            Object.entries(myLeaderUsage).sort((a,b) => b[1] - a[1]).forEach(([lId, count]) => { const l = LEADERS.find(x => x.id === lId); const wins = last20.filter(m => m.leader === lId && m.rank <= 2).length; const wr = Math.round((wins/count)*100); htmlUsage += `<div class="bg-black/40 p-3 rounded-xl border border-white/10 flex items-center gap-2"><span class="text-xl">${l.icon}</span><div><p class="text-[10px] font-black text-white uppercase leading-none">${count} partidas</p><p class="text-[9px] text-green-400 font-bold">${wr}% WR</p></div></div>`; });
+            document.getElementById('stats-leader-usage').innerHTML = htmlUsage + `</div>`;
+
+            let htmlAttr = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Dominio de Sinergias (min 2)</h3>`;
+            [1,2,3,4].forEach(rank => {
+                const bestAttrId = Object.keys(attrStats).sort((a,b) => attrStats[b][rank] - attrStats[a][rank])[0];
+                if(bestAttrId && attrStats[bestAttrId][rank] > 0) {
+                    const a = ATTRIBUTES.find(x => x.id === bestAttrId);
+                    htmlAttr += `<div class="bg-white/5 p-3 rounded-2xl border border-white/10 flex justify-between items-center"><div class="flex items-center gap-2"><span class="text-xl drop-shadow-strong">${a.icon}</span> <div class="text-[9px] font-black uppercase">Más común en ${rank}º<p class="text-white text-xs">${a.name}</p></div></div><div class="text-right"><p class="font-black text-lg ${rank <= 2 ? 'text-green-400' : 'text-red-400'}">${attrStats[bestAttrId][rank]}</p><p class="text-[8px] text-gray-500 uppercase leading-none">VECES</p></div></div>`;
+                }
+            });
+            document.getElementById('stats-analysis').innerHTML = htmlAttr;
 
             let htmlMod = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Sinergia TOP por Modificador</h3><div class="grid grid-cols-1 gap-2">`;
             Object.entries(modCorrelations).forEach(([mId, attrs]) => {
@@ -431,11 +424,38 @@
                 const wr = Math.round((bestAttrEntry[1].wins/bestAttrEntry[1].total)*100);
                 htmlMod += `<div class="bg-black/40 p-3 rounded-xl border border-white/10 flex justify-between items-center"><div class="flex items-center gap-2"><span class="text-lg">${mod.icon}</span><span class="text-[9px] uppercase font-bold text-gray-400">${mod.name}</span></div><div class="flex items-center gap-2 font-black text-xs text-shadow"><span class="${attr.color} px-2 py-0.5 rounded-full border border-white/20">${attr.icon} ${attr.name}</span> <span class="text-green-400">${wr}% WR</span></div></div>`;
             });
-            document.getElementById('stats-mod-correl').innerHTML = htmlMod + `</div>`;
+            document.getElementById('stats-mod-correl').innerHTML = (Object.keys(modCorrelations).length ? htmlMod + `</div>` : '');
 
-            let htmlUsage = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Uso de Líderes (Últimas 20)</h3><div class="grid grid-cols-2 gap-2">`;
-            Object.entries(myLeaderUsage).sort((a,b) => b[1] - a[1]).forEach(([lId, count]) => { const l = LEADERS.find(x => x.id === lId); const wins = last20.filter(m => m.leader === lId && m.rank <= 2).length; const wr = Math.round((wins/count)*100); htmlUsage += `<div class="bg-black/40 p-3 rounded-xl border border-white/10 flex items-center gap-2"><span class="text-xl">${l.icon}</span><div><p class="text-[10px] font-black text-white uppercase leading-none">${count} partidas</p><p class="text-[9px] text-green-400 font-bold">${wr}% WR</p></div></div>`; });
-            document.getElementById('stats-leader-usage').innerHTML = htmlUsage + `</div>`;
+            let htmlVs = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Win Rate vs Líderes Rivales</h3><div class="grid grid-cols-2 gap-2">`;
+            Object.entries(vsLeaderStats).sort((a,b) => (b[1].winsVs/b[1].totalVs) - (a[1].winsVs/a[1].totalVs)).forEach(([rId, data]) => {
+                const l = LEADERS.find(x => x.id === rId); const wr = Math.round((data.winsVs / data.totalVs) * 100);
+                htmlVs += `<div class="bg-white/5 p-2 rounded-xl flex items-center justify-between px-3 border border-white/5"><div class="flex items-center gap-2"><span class="text-lg">${l.icon}</span><span class="text-[9px] font-black uppercase text-gray-400">${l.name}</span></div><span class="text-xs font-black ${wr >= 50 ? 'text-green-400' : 'text-red-400'}">${wr}%</span></div>`;
+            });
+            document.getElementById('stats-vs-leaders').innerHTML = htmlVs + `</div>`;
+
+            // Métrica E-Sports
+            const winCurve = elixirCurve.count ? (elixirCurve.wins / elixirCurve.count).toFixed(1) : "-";
+            document.getElementById('stats-elixir-curve').innerHTML = `
+            <div class="bg-blue-900/40 p-4 rounded-3xl border border-blue-500/30 backdrop-blur-sm">
+                <p class="text-[10px] font-black text-blue-400 uppercase mb-1">Curva de Elixir Ganadora (E-Sports Analytica)</p>
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🧪</span>
+                    <div>
+                        <p class="text-xl font-black text-white">${winCurve} Elixir Medio</p>
+                        <p class="text-[9px] text-blue-200">Este es el coste promedio de tus equipos en el Top 2.</p>
+                    </div>
+                </div>
+            </div>`;
+
+            let htmlChar = `<h3 class="text-xs font-black text-gray-400 uppercase px-2 mb-2">Tus Fichajes Estrella</h3>`;
+            const sortedTroops = Object.keys(troopStats).sort((a,b) => (troopStats[b].wins/troopStats[b].total) - (troopStats[a].wins/troopStats[a].total));
+            if(sortedTroops.length) {
+                const mvp = TROOPS.find(x => x.id == sortedTroops[0]);
+                const toxic = TROOPS.find(x => x.id == sortedTroops[sortedTroops.length-1]);
+                htmlChar += `<div class="bg-green-900/40 p-4 rounded-2xl border border-green-500/50 flex justify-between items-center"><div class="flex items-center gap-3"><span class="text-3xl drop-shadow-strong">🏆</span><div><p class="text-[9px] font-black text-green-400 uppercase">MVP (WR ${Math.round((troopStats[mvp.id].wins/troopStats[mvp.id].total)*100)}%)</p><p class="font-bold text-white text-shadow uppercase">${mvp.name}</p></div></div></div>`;
+                if(sortedTroops.length > 1) htmlChar += `<div class="bg-red-900/40 p-4 rounded-2xl border border-red-500/50 flex justify-between items-center mt-2"><div class="flex items-center gap-3"><span class="text-3xl drop-shadow-strong">💀</span><div><p class="text-[9px] font-black text-red-400 uppercase">Tóxico (Loss ${100 - Math.round((troopStats[toxic.id].wins/troopStats[toxic.id].total)*100)}%)</p><p class="font-bold text-white text-shadow uppercase">${toxic.name}</p></div></div></div>`;
+            }
+            document.getElementById('stats-chars').innerHTML = htmlChar;
 
             navigate('view-stats');
         }
@@ -446,6 +466,7 @@
         
         function editMatch(idx) { editingIdx = idx; draft = JSON.parse(JSON.stringify(matchHistory[idx])); document.getElementById('form-title').innerText = "Editar Registro"; document.getElementById('edit-indicator').classList.remove('hidden'); navigate('view-form'); renderFormInputs(); selectRank(draft.rank); }
         function deleteMatch(idx) { if(confirm('¿Borrar?')) { matchHistory.splice(idx, 1); localStorage.setItem(CURRENT_KEY, JSON.stringify(matchHistory)); renderHistory(); } }
+        updateHomeStats();
     </script>
 </body>
 </html>
